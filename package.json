@@ -1,7 +1,8 @@
 {
-  "name": "src",
+  "name": "nodejs-with-express-api",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "build": "node build",
     "dev": "nodemon src/server.js",
@@ -13,8 +14,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "body-parser": "^2.2.2",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^8.23.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

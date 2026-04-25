@@ -6,12 +6,6 @@ const getAllProducts = async (req, res) => {
   res.json(products);
 };
 
-const getFirstProduct = async (req, res) => {
-  const product = await productService.getFirstProduct();
-
-  res.json(product);
-};
-
 const getProductById = async (req, res) => {
   const id = req.params.id;
 
@@ -22,4 +16,47 @@ const getProductById = async (req, res) => {
   res.json(product);
 };
 
-export default { getAllProducts, getFirstProduct, getProductById };
+const createProduct = async (req, res) => {
+  try {
+    const product = await productService.createProduct(req.body);
+
+    res.json(product);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+const updateProduct = async (req, res) => {
+  const id = req.params.id;
+  const input = req.body;
+
+  try {
+    const product = await productService.updateProduct(id, input);
+
+    res.json(product);
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+const deleteProduct = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await productService.deleteProduct(id);
+
+    res.json({
+      message: "Product deleted successfully.",
+    });
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+};
+
+export default {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+};
