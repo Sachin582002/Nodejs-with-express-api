@@ -120,38 +120,78 @@ c. sort: db.users.find().sort({name:1}) 1: ASC, -1: DESC
 - Create models using Schema
 - Relationships
 
-## Cryptography
+# Cryptography
 
 ## Encryption
 
-Encryption: Converting readable text to unreadable/cipher text
+- Encryption: Converting readable text to unreadable/cipher text
+- for e.g: hello -> aijosecq9wn033qcu-
 
-for e.g: hello -> aijosecq9wn033qcu-
+- Decryption: Converting cipher text to readable text
+- for e.g: aijosecq9wn033qcu- -> hello
 
-Decryption: Converting cipher text to readable text
+### Types
 
-for e.g: aijosecq9wn033qcu- -> hello
-
-## Types
-
-Symmetric: Same key is used for encryption and decryption
-Assymetric: Different keys are used for encryption and decryption, Public/Private key (RSA)
+- Symmetric: Same key is used for encryption and decryption
+- Assymetric: Different keys are used for encryption and decryption, Public/Private key (RSA)
 
 ## Hashing
 
-One way encryption
-Convert the readable text to cipher text but not back to readable
-Hashing always returns same cipher
-hello => 123456asdfdsfg
+- One way encryption
+- Convert the readable text to cipher text but not back to readable
+- Hashing always returns same cipher
+- hello => 123456asdfdsfg
 
 ## Salt
 
-Adding random characters in the hash
-hello -> 123sdg456ahyusdfdsfuigui
-hello => 12asd3456assdfdghsfgke34
+- Adding random characters in the hash
+- hello -> 123sdg456ahyusdfdsfuigui
+- hello => 12asd3456assdfdghsfgke34
+
+## Authentication & Authorization
+
+1. Authentication: Who you are? Logged in user
+2. Authorization:  What you can do? User role
+
+## JSON Web Token (JWT)
+
+- Self verified
+- Tamper proof
+- Used for both authentication & authorization
+
+### JWT structure
+
+- Header
+- Payload
+- Signature
+
+## Storage
+
+1. Cookie Storage
+- Size: 4KB
+- Storage: Server & Browser
+- Expiry: Cookie expiry
+
+2. Local Storage
+- Size: 5-10MB
+- Storage: Only Browser
+- Expiry: Never
+
+3. Session Storage
+- Size: 5MB
+- Storage: Only Browser
+- Expiry: On tab close
+
+## Auth Process
+
+1. Login/Register success
+2. Generate token (JWT)
+3. Store token: Cookie, Session, Local storage
+4. Append the token in every request to handle auth
+5. Verify the token and authenticate/authorize user (Middleware)
+
 =========================
 
-Session, Cookie
-JWT (json web token)
-Postman
-ZOD data validation
+- Middleware: Authentication/Authorization (Role-Based Access Control)
+- Postman
+- ZOD data validation
