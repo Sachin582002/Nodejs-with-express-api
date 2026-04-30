@@ -210,10 +210,6 @@ Server ------- Response -----> Browser
 
 =========================
 
-- ZOD data validation
-- Postman
-- Product: filter, sort, pagination
-- Product count, get brands, categories
 - Order management
 - Payment integration (Khalti, Stripe)
 - File upload in Cloudinary
