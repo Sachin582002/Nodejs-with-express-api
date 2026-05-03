@@ -151,7 +151,7 @@ c. sort: db.users.find().sort({name:1}) 1: ASC, -1: DESC
 ## Authentication & Authorization
 
 1. Authentication: Who you are? Logged in user
-2. Authorization:  What you can do? User role
+2. Authorization: What you can do? User role
 
 ## JSON Web Token (JWT)
 
@@ -168,16 +168,19 @@ c. sort: db.users.find().sort({name:1}) 1: ASC, -1: DESC
 ## Storage
 
 1. Cookie Storage
+
 - Size: 4KB
 - Storage: Server & Browser
 - Expiry: Cookie expiry
 
 2. Local Storage
+
 - Size: 5-10MB
 - Storage: Only Browser
 - Expiry: Never
 
 3. Session Storage
+
 - Size: 5MB
 - Storage: Only Browser
 - Expiry: On tab close
@@ -208,11 +211,28 @@ Server ------- Response -----> Browser
 - Error handling
 - Data validation
 
+## File upload
+
+1. File with data -> Send using FormData
+2. Use `multer` package to handle formdata
+   - When file is sent through formdata, multer handles it
+   - Store the file temporarily, local folder or RAM
+   - Upload the file
+   - Remove the file after successful upload
+   - File can be single or multiple
+3. Cloudinary: Upload file to cloudinary (store your file here)
+   - Signin/Signup to cloudinary
+   - Create an API key or Use existing API key
+   - Use cloudinary sdk, and use your api key here
+4. Receive the file url from uploaded file in cloudinary
+5. Store the URL in database
+
 =========================
 
+- Postman
+- File upload in Cloudinary (Update product image, Single file upload like profile image)
 - Order management
 - Payment integration (Khalti, Stripe)
-- File upload in Cloudinary
 - Reset password / Send email
 - User management, get orders by merchant
 - Template engine
