@@ -11,6 +11,7 @@ import bodyParser from "body-parser";
 import logger from "./middlewares/logger.js";
 import auth from "./middlewares/auth.js";
 import connectCloudinary from "./config/cloudinary.js";
+import promptAI from "./utils/ai.js";
 
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -42,6 +43,12 @@ app.use("/api/products", upload.array("images", 5), productRoute);
 app.use("/api/users", auth, upload.single("image"), userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/orders", auth, orderRoute);
+
+app.post("/api/ai", async (req, res) => {
+  const result = await promptAI(req.body.prompt);
+  
+  res.json(result);
+});
 
 app.listen(config.port, () => {
   console.log(`Server running at port ${config.port}...`);
