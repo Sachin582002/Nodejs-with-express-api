@@ -1,5 +1,6 @@
 import express from "express";
 import multer from "multer";
+import cors from "cors";
 
 import config from "./config/config.js";
 import productRoute from "./routes/product.route.js";
@@ -12,7 +13,6 @@ import bodyParser from "body-parser";
 import logger from "./middlewares/logger.js";
 import auth from "./middlewares/auth.js";
 import connectCloudinary from "./config/cloudinary.js";
-import promptAI from "./utils/ai.js";
 
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -24,12 +24,14 @@ connectCloudinary();
 app.use(bodyParser.json());
 app.use(logger);
 
+app.use(cors());
+
 app.set("view engine", "hbs");
 
 app.get("/", (request, response) => {
-   response.json({
+  response.json({
     status: "ok",
-    version: "0.1.0",
+    version: "1.0.0",
     port: config.port,
   });
 });
@@ -39,12 +41,6 @@ app.use("/api/users", auth, upload.single("image"), userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/orders", auth, orderRoute);
 app.use("/pages", pageRoute);
-
-app.post("/api/ai", async (req, res) => {
-  const result = await promptAI(req.body.prompt);
-  
-  res.json(result);
-});
 
 app.listen(config.port, () => {
   console.log(`Server running at port ${config.port}...`);
